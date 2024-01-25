@@ -5,7 +5,7 @@ const cardo = Cardo({ subsets: ["latin"], weight: ["400", "700"] });
 const codepro = Source_Code_Pro({ subsets: ["latin"], weight: ["400", "700"] });
 const mono = Space_Mono({ subsets: ["latin"], weight: ["700"] });
 
-const Navbar = () => {
+const Navbar = ({ batch }) => {
   return (
     <>
       {/* Desktop Size */}
@@ -42,7 +42,7 @@ const Navbar = () => {
           className={`${mono.className} cursor-default p-3 px-10 bg-gradient-to-r from-[rgba(12,192,223,1)] to-[rgba(255,222,89,1)] rounded-lg text-black transition-all
         duration-100 ease-in-out hover:translate-x-[-3px] hover:shadow-lg`}
         >
-          BATCH 1
+          {batch}
         </button>
       </div>
 

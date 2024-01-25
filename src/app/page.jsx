@@ -1,12 +1,13 @@
 "use client";
 import Navbar from "@/components/navbar/Navbar";
-import { GetPoolProfit, GetChartData, GetTotalPool } from "@/api/api";
+import { GetPoolProfit, GetChartData, GetTotalPool, GetBatch } from "@/api/api";
 import { useEffect, useState } from "react";
 import { Profit } from "@/components/profit/Profit";
 import { Chart } from "@/components/chart/Chart";
 import { CalculateProfit } from "@/components/calculate-profit/CalculateProfit";
 
 export default function Home() {
+  const [batchNow, setBatchNow] = useState(null);
   const [poolProfit, setPoolProfit] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [totalPool, setTotalPool] = useState(null);
@@ -14,6 +15,9 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const batch = await GetBatch();
+        setBatchNow(batch);
+
         const totalPoolData = await GetTotalPool();
         setTotalPool(totalPoolData);
 
@@ -33,7 +37,7 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar batch={batchNow && batchNow.text} />
       <div className="flex flex-col items-center gap-1">
         <Profit
           profitPerc={poolProfit && poolProfit[0].percentage}

@@ -125,13 +125,6 @@ export const CalculateProfit = ({ totalPool, totalProfit }) => {
             : ""}
         </h1>
       </div>
-
-      {/* <div className="mt-3 flex gap-5">
-        <h1 className="font-bold text-[#ffce56] text-2xl">MY PROFIT:</h1>
-        <h1 className="font-bold text-[#52ed41] text-2xl">
-          {myProfit !== null ? `${myProfit} %` : "Loading..."}
-        </h1>
-      </div> */}
     </div>
   );
 };
