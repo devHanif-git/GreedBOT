@@ -26,7 +26,7 @@ const SelectCustom = ({ options, onSelectChange }) => {
       <select
         value={selectedOption}
         onChange={handleSelectChange}
-        className="text-white border border-gray-300 rounded-full h-10 pl-3 pr-8 bg-black hover:border-gray-400 focus:outline-none appearance-none"
+        className="text-white border border-gray-300 rounded-full h-10 pl-3 pr-8 bg-transparent hover:border-gray-400 focus:outline-none focus:text-gray-500 appearance-none"
       >
         {options.map((option) => (
           <option key={option} value={option}>

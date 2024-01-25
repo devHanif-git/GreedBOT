@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "@/components/navbar/Navbar";
-import { GetPoolProfit, GetChartData } from "@/api/api";
+import { GetPoolProfit, GetChartData, GetTotalPool } from "@/api/api";
 import { useEffect, useState } from "react";
 import { Profit } from "@/components/profit/Profit";
 import { Chart } from "@/components/chart/Chart";
@@ -9,10 +9,14 @@ import { CalculateProfit } from "@/components/calculate-profit/CalculateProfit";
 export default function Home() {
   const [poolProfit, setPoolProfit] = useState(null);
   const [chartData, setChartData] = useState(null);
+  const [totalPool, setTotalPool] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const totalPoolData = await GetTotalPool();
+        setTotalPool(totalPoolData);
+
         const poolProfitData = await GetPoolProfit();
         setPoolProfit(poolProfitData);
 
@@ -36,7 +40,10 @@ export default function Home() {
           profitUsdt={poolProfit && poolProfit[0].usdt}
         />
         <Chart chartData={chartData?.map((data) => data.data)} />
-        <CalculateProfit totalProfit={poolProfit && poolProfit[0].percentage} />
+        <CalculateProfit
+          totalPool={totalPool && totalPool.usdt}
+          totalProfit={poolProfit && poolProfit[0].percentage}
+        />
       </div>
     </div>
   );

@@ -40,3 +40,23 @@ export const GetChartData = async () => {
     return null; // or handle the error appropriately
   }
 };
+
+export const GetTotalPool = async () => {
+  try {
+    const res = await fetch(`${API_LINK}/total-pool`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    const resJson = await res.json();
+
+    return resJson;
+  } catch (error) {
+    console.error("Fetching chart data failed:", error);
+
+    return null; // or handle the error appropriately
+  }
+};
