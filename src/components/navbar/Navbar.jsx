@@ -74,7 +74,7 @@ const Navbar = ({ batch }) => {
             className={`${mono.className} text-[12px] sm:text-[14px] sm:px-5 lg:px-6 cursor-default py-2 px-4 bg-gradient-to-r from-[rgba(12,192,223,1)] to-[rgba(255,222,89,1)] rounded-lg text-black transition-all
         duration-100 ease-in-out hover:translate-x-[-3px] hover:shadow-lg`}
           >
-            BATCH 1
+            {batch}
           </button>
         </div>
 
