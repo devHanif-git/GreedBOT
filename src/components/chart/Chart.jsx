@@ -18,7 +18,7 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"];
+const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
 
 export const options = {
   responsive: true,
@@ -60,8 +60,8 @@ export const Chart = ({ chartData }) => {
     labels,
     datasets: [
       {
-        label: "Cummulative Profits",
-        data: chartData,
+        label: "Cumulative Profits",
+        data: chartData.map((item) => item.data),
         backgroundColor: "rgba(255, 206, 86, 100)",
       },
     ],

@@ -4,7 +4,7 @@ import { Roboto, Space_Mono } from "next/font/google";
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700", "900"] });
 const space = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
-export const Profit = ({ profitPerc, profitUsdt }) => {
+export const Profit = ({ profitData }) => {
   return (
     <div className="relative flex flex-col justify-center items-center w-[300px] h-[300px] ">
       <Image
@@ -18,9 +18,9 @@ export const Profit = ({ profitPerc, profitUsdt }) => {
       >
         <h1>POOL PROFIT</h1>
         <h1 className={`${roboto.className} text-4xl text-[#f7d02c]`}>
-          {profitPerc}%
+          {profitData.percentage}%
         </h1>
-        <h1 className=" ">USDT {profitUsdt}</h1>
+        <h1 className=" ">USDT {profitData.usdt}</h1>
       </div>
     </div>
   );

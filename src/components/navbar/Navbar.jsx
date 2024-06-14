@@ -1,11 +1,24 @@
 import Image from "next/image";
 import { Cardo, Source_Code_Pro, Space_Mono } from "next/font/google";
+import { useState, useEffect } from "react";
+import Modal from "@/components/modal/Modal";
 
 const cardo = Cardo({ subsets: ["latin"], weight: ["400", "700"] });
 const codepro = Source_Code_Pro({ subsets: ["latin"], weight: ["400", "700"] });
 const mono = Space_Mono({ subsets: ["latin"], weight: ["700"] });
 
-const Navbar = ({ batch }) => {
+const Navbar = ({ batches, year, setBatch }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBatch, setSelectedBatch] = useState("");
+
+  useEffect(() => {
+    if (batches && batches.length > 0) {
+      const latestBatch = batches[batches.length - 1];
+      setSelectedBatch(latestBatch.month);
+      setBatch(latestBatch);
+    }
+  }, [batches, setBatch]);
+
   return (
     <>
       {/* Desktop Size */}
@@ -39,10 +52,11 @@ const Navbar = ({ batch }) => {
         </div>
 
         <button
-          className={`${mono.className} cursor-default p-3 px-10 bg-gradient-to-r from-[rgba(12,192,223,1)] to-[rgba(255,222,89,1)] rounded-lg text-black transition-all
+          onClick={() => setShowModal(true)}
+          className={`${mono.className} cursor-pointer p-3 px-10 bg-gradient-to-r from-[rgba(12,192,223,1)] to-[rgba(255,222,89,1)] rounded-lg text-black transition-all
         duration-100 ease-in-out hover:translate-x-[-3px] hover:shadow-lg`}
         >
-          {batch}
+          {selectedBatch}
         </button>
       </div>
 
@@ -71,10 +85,11 @@ const Navbar = ({ batch }) => {
             </div>
           </div>
           <button
-            className={`${mono.className} text-[12px] sm:text-[14px] sm:px-5 lg:px-6 cursor-default py-2 px-4 bg-gradient-to-r from-[rgba(12,192,223,1)] to-[rgba(255,222,89,1)] rounded-lg text-black transition-all
+            onClick={() => setShowModal(true)}
+            className={`${mono.className} text-[12px] sm:text-[14px] sm:px-5 lg:px-6 cursor-pointer py-2 px-4 bg-gradient-to-r from-[rgba(12,192,223,1)] to-[rgba(255,222,89,1)] rounded-lg text-black transition-all
         duration-100 ease-in-out hover:translate-x-[-3px] hover:shadow-lg`}
           >
-            {batch}
+            {selectedBatch}
           </button>
         </div>
 
@@ -88,6 +103,17 @@ const Navbar = ({ batch }) => {
           STRATEGY-OPTIMIZED GRID BOT
         </a>
       </div>
+
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        setBatch={(batch) => {
+          setBatch(batch);
+          setSelectedBatch(batch.month);
+        }}
+        batches={batches}
+        year={year}
+      />
     </>
   );
 };
