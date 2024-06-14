@@ -51,7 +51,9 @@ export default function Home() {
         <Chart chartData={selectedBatch ? selectedBatch.data : []} />
         <CalculateProfit
           totalPool={totalPool && totalPool.usdt}
-          totalProfit={poolProfit && poolProfit[0].percentage}
+          totalProfit={
+            selectedBatch ? selectedBatch.poolProfit[0].percentage : []
+          }
         />
       </div>
     </div>
