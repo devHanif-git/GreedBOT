@@ -18,7 +18,7 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
+const labels = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
 
 export const options = {
   responsive: true,
